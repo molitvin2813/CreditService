@@ -16,11 +16,11 @@
             android:id="@+id/imageView3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="200dp"
+            android:layout_marginTop="100dp"
             app:srcCompat="@drawable/plant64" />
 
         <EditText
-            android:id="@+id/editText3"
+            android:id="@+id/editTextLoginBank"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
@@ -31,7 +31,7 @@
             android:inputType="textPersonName" />
 
         <EditText
-            android:id="@+id/editText4"
+            android:id="@+id/editTextPasswordBank"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
@@ -42,17 +42,18 @@
             android:inputType="textPassword" />
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/btnBankSignIn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
             android:layout_marginTop="25dp"
             android:layout_marginRight="30dp"
             android:background="@color/backgroundColorBtn"
+            android:onClick="btnBankSignInClick"
             android:text="@string/userSignInActivityBtn" />
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/textViewBankRegister"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
