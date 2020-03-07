@@ -6,4 +6,5 @@
     <string name="userSignInActivityEditTextPassword">Пароль</string>
     <string name="userSignInActivityBtn">Войти</string>
     <string name="userSignInActivityLabel">Не зарегестрированы?</string>
+    <string name="activityMainUserEditTextSearch">Поиск</string>
 </resources>
