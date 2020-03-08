@@ -29,13 +29,13 @@ public class StateAdapter extends ArrayAdapter<State> {
         ImageView flagView = (ImageView) view.findViewById(R.id.imageViewFlag);
         TextView nameView = (TextView) view.findViewById(R.id.labelName);
         TextView capitalView = (TextView) view.findViewById(R.id.labelCapital);
-
+        TextView nameOfBank = (TextView) view.findViewById(R.id.labelNameOfBank);
         State state = states.get(position);
 
-        flagView.setImageResource(state.getFlagResource());
-        nameView.setText(state.getName());
-        capitalView.setText(state.getCapital());
-
+        flagView.setImageResource(state.getImageBank());
+        nameView.setText(state.getPercent());
+        capitalView.setText(state.getMinMaxAmount());
+        nameOfBank.setText(state.getNameOfBank());
         return view;
     }
 }

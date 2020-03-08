@@ -1,42 +1,48 @@
 package com.example.creditservice;
 
-import android.content.res.Resources;
-import android.graphics.Bitmap;
-
 public class State {
 
-    private String name; // название
-    private String capital;  // столица
-    private int flagResource; // ресурс флага
+    private String percent; // название
+    private String minMaxAmount;  // столица
+    private int imageBank; // ресурс флага
+    private String nameOfBank;
 
-    public State(String name, String capital, int flag){
+    public State(String name, String capital, int flag, String nameOfBank){
 
-        this.name=name;
-        this.capital=capital;
-        this.flagResource=flag;
+        this.percent =name;
+        this.minMaxAmount =capital;
+        this.imageBank =flag;
+        this.nameOfBank = nameOfBank;
     }
 
-    public String getName() {
-        return this.name;
+    public String getPercent() {
+        return this.percent;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setPercent(String percent) {
+        this.percent = percent;
     }
 
-    public String getCapital() {
-        return this.capital;
+    public String getMinMaxAmount() {
+        return this.minMaxAmount;
     }
 
-    public void setCapital(String capital) {
-        this.capital = capital;
+    public void setMinMaxAmount(String minMaxAmount) {
+        this.minMaxAmount = minMaxAmount;
     }
 
-    public int getFlagResource() {
-        return this.flagResource;
+    public int getImageBank() {
+        return this.imageBank;
     }
 
-    public void setFlagResource(int flagResource) {
-        this.flagResource = flagResource;
+    public void setImageBank(int imageBank) {
+        this.imageBank = imageBank;
+    }
+
+    public String getNameOfBank(){
+        return nameOfBank;
+    }
+    public void setNameOfBank(String nameOfBank){
+        this.nameOfBank=nameOfBank;
     }
 }

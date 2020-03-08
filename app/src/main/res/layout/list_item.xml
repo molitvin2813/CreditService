@@ -16,6 +16,13 @@
         android:layout_height="wrap_content">
 
         <TextView
+            android:id="@+id/labelNameOfBank"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="100dp"
+            android:text="Название банка" />
+
+        <TextView
             android:id="@+id/labelName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

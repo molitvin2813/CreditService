@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainUserActivity">
+    tools:context=".SearchActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -19,7 +19,7 @@
             android:orientation="horizontal">
 
             <EditText
-                android:id="@+id/editTextSearch"
+                android:id="@+id/editTextSearchActivitySearch"
                 android:layout_width="300dp"
                 android:layout_height="50dp"
                 android:ems="10"
@@ -27,14 +27,13 @@
                 android:inputType="textPersonName" />
 
             <ImageView
-                android:id="@+id/imageView4"
+                android:id="@+id/imageView4ActivitySearch"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
                 android:layout_weight="1"
                 android:onClick="btnSearchOnClick"
                 app:srcCompat="@drawable/plant" />
         </LinearLayout>
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -66,11 +65,9 @@
         </LinearLayout>
 
         <ListView
-            android:id="@+id/listViewMainUserActivity"
+            android:id="@+id/listViewActivitySearch"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-        </ListView>
+            android:layout_height="match_parent" />
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
