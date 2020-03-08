@@ -20,8 +20,8 @@
 
             <EditText
                 android:id="@+id/editTextSearch"
-                android:layout_width="350dp"
-                android:layout_height="wrap_content"
+                android:layout_width="300dp"
+                android:layout_height="50dp"
                 android:ems="10"
                 android:hint="@string/activityMainUserEditTextSearch"
                 android:inputType="textPersonName" />
@@ -29,7 +29,7 @@
             <ImageView
                 android:id="@+id/imageView4"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:layout_weight="1"
                 android:onClick="btnSearchOnClick"
                 app:srcCompat="@drawable/plant" />

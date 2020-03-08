@@ -2,6 +2,7 @@ package com.example.creditservice;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
@@ -50,9 +51,12 @@ public class UserSignIn extends AppCompatActivity {
         Cursor cursor = mDb.rawQuery("SELECT * FROM t_user WHERE t_user.login = '"+loginUser.getText().toString() + "' ", null);
         cursor.moveToFirst();
 
+        Intent intent = new Intent(this, MainUserActivity.class);
         if (!cursor.isAfterLast())
             if(cursor.getString(2).equals(passwordUser.getText().toString()))
-                loginUser.setText("Вход выполнен");
+                startActivity(intent);
+
+
 
         cursor.close();
         mDBHelper.close();

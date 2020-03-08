@@ -9,6 +9,9 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,19 +21,25 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
-public class MainUserActivity extends ListActivity {
+public class MainUserActivity extends AppCompatActivity  {
     private DataBaseHelper mDBHelper;
     private SQLiteDatabase mDb;
     ListView list;
     String[] creditList= new String[10];
+    private List<State> states = new ArrayList();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_user);
 
         list = (ListView) findViewById(R.id.listViewMainUserActivity);
+
 
         //Читаем данные из таблицы
         mDBHelper = new DataBaseHelper(this);
@@ -48,22 +57,26 @@ public class MainUserActivity extends ListActivity {
         }
 
 
-        Cursor cursor = mDb.rawQuery("SELECT * FROM t_credit;", null);
+        Cursor cursor = mDb.rawQuery("SELECT t_credit.percent, t_credit.min_amount, t_credit.max_amount, t_bank.image " +
+                "FROM t_credit " +
+                "INNER JOIN t_bank " +
+                "ON t_credit.t_bank_idt_bank=t_bank.idt_bank ", null);
 
         cursor.moveToFirst();
 
+        Bitmap myBitmap;
+        File imgFile;
+        for(int i=0; i<9 && !cursor.isAfterLast(); i++){
 
-        for(int i=0; i<9 || !cursor.isAfterLast(); i++){
+            String s = cursor.getInt(0) + "% "+cursor.getInt(1) + " - " + cursor.getInt(2);
             //процент кредита
-            creditList[i].concat(cursor.getInt(1)+"% ");
-            // минимальная-максимальная сумма кредита
-            creditList[i].concat(cursor.getInt(2)+" - " + cursor.getInt(3));
+            states.add(new State (cursor.getInt(0) + "% ",cursor.getInt(1) + " - " + cursor.getInt(2), getResources().getIdentifier(cursor.getString(3), "drawable", getPackageName())));
 
+            cursor.moveToNext();
         }
-
-
-
-        setListAdapter(new MyAdapter(this, R.layout.list_item, creditList));
+        StateAdapter stateAdapter = new StateAdapter(this, R.layout.list_item, states);
+        // устанавливаем адаптер
+        list.setAdapter(stateAdapter);
     }// onCreate
 
     /**
@@ -76,28 +89,5 @@ public class MainUserActivity extends ListActivity {
     }// btnSearchOnClick
 
 
-    private class MyAdapter extends ArrayAdapter<String> {
-
-        MyAdapter(Context context, int textViewResourceId, String[] objects) {
-            super(context, textViewResourceId, objects);
-        }
-
-        @NonNull
-        @Override
-        public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-            LayoutInflater inflater = getLayoutInflater();
-            View row = inflater.inflate(R.layout.list_item, parent, false);
-            TextView label = (TextView) row.findViewById(R.id.text_view_cat_name);
-            label.setText(creditList[position]);
-            ImageView iconImageView = (ImageView) row.findViewById(R.id.image_view_icon);
-            // Если текст содержит кота, то выводим значок Льва (лев - это кот!)
-            if (creditList[position].equalsIgnoreCase("Лев")) {
-                iconImageView.setImageResource(R.drawable.plant);
-            } else {
-                iconImageView.setImageResource(R.mipmap.ic_launcher);
-            }
-            return row;
-        }
-    }
 
 }
