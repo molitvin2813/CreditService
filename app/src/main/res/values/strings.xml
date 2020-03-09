@@ -2,9 +2,20 @@
     <string name="app_name">CreditService</string>
     <string name="startWindowBtnUserSignIn">Пользователь</string>
     <string name="startWindowBtnBankSignIn">Представитель банка</string>
+
     <string name="userSignInActivityEditTextLogin">Имя пользователя</string>
     <string name="userSignInActivityEditTextPassword">Пароль</string>
     <string name="userSignInActivityBtn">Войти</string>
     <string name="userSignInActivityLabel">Не зарегестрированы?</string>
+
     <string name="activityMainUserEditTextSearch">Поиск</string>
+
+    <string name="registrationUserActivityEditTextLogin">Логин</string>
+    <string name="registrationUserActivityEditTextPassword">Пароль</string>
+    <string name="registrationUserActivityButtonOK">Подтвердить</string>
+
+    <string name="profileFillActivityEditTextCreditAmount">Сумма кредита</string>
+    <string name="profileFillActivityEditTextEMail">Почта</string>
+    <string name="profileFillActivityEditTextTelephoneNumber">Номер телефона</string>
+    <string name="profileFillActivityButtonOK">Подтвердить</string>
 </resources>

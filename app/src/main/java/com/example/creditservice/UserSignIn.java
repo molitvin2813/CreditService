@@ -61,4 +61,13 @@ public class UserSignIn extends AppCompatActivity {
         cursor.close();
         mDBHelper.close();
     }
+
+    /**
+     * Обработчик нажатия на label регистрации
+     * @param view ыва
+     */
+    public void registerClick(View view){
+        Intent intent = new Intent(this, RegistrationUserActivity.class);
+        startActivity(intent);
+    }
 }

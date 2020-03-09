@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UserSignIn">
+    tools:context=".ProfileFillActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -12,55 +12,56 @@
         android:background="@color/backgroundColor"
         android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="100dp"
-            app:srcCompat="@drawable/plant64" />
-
         <EditText
-            android:id="@+id/editTextLoginUser"
+            android:id="@+id/editTextCreditAmountProfileFillActivity"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
-            android:layout_marginTop="25dp"
+            android:layout_marginTop="50dp"
             android:layout_marginRight="30dp"
             android:ems="10"
-            android:hint="@string/userSignInActivityEditTextLogin"
+            android:hint="@string/profileFillActivityEditTextCreditAmount"
+            android:inputType="number" />
+
+        <EditText
+            android:id="@+id/editTextEMailProfileFillActivity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="30dp"
+            android:ems="10"
+            android:hint="@string/profileFillActivityEditTextEMail"
             android:inputType="textPersonName" />
 
         <EditText
-            android:id="@+id/editTextPasswordUser"
+            android:id="@+id/editTextTelephoneNumberProfileFillActivity"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="30dp"
             android:ems="10"
-            android:hint="@string/userSignInActivityEditTextPassword"
-            android:inputType="textPassword" />
+            android:hint="@string/profileFillActivityEditTextTelephoneNumber"
+            android:inputType="textPersonName" />
 
-        <Button
-            android:id="@+id/btnUserSignIn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="25dp"
-            android:layout_marginRight="30dp"
-            android:background="@color/backgroundColorBtn"
-            android:onClick="btnUserSignInClick"
-            android:text="@string/userSignInActivityBtn" />
-
-        <TextView
-            android:id="@+id/textViewUserRegister"
+        <Spinner
+            android:id="@+id/spinnerCityProfileFillActivity"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
             android:layout_marginTop="10dp"
+            android:layout_marginRight="30dp" />
+
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="20dp"
             android:layout_marginRight="30dp"
-            android:gravity="center"
-            android:onClick="registerClick"
-            android:text="@string/userSignInActivityLabel" />
+            android:background="@color/backgroundColorBtn"
+            android:onClick="btnOkFillActivity"
+            android:text="@string/profileFillActivityButtonOK" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

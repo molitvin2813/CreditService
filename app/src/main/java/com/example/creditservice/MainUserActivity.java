@@ -33,7 +33,7 @@ public class MainUserActivity extends AppCompatActivity  {
     private SQLiteDatabase mDb;
     ListView list;
     EditText searchField;
-    String[] creditList= new String[10];
+
     private List<State> states = new ArrayList();
 
     private int page=0;
