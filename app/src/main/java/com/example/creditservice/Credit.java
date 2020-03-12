@@ -1,13 +1,13 @@
 package com.example.creditservice;
 
-public class State {
+public class Credit {
 
     private String percent; // название
     private String minMaxAmount;  // столица
     private int imageBank; // ресурс флага
     private String nameOfBank;
 
-    public State(String name, String capital, int flag, String nameOfBank){
+    public Credit(String name, String capital, int flag, String nameOfBank){
 
         this.percent =name;
         this.minMaxAmount =capital;

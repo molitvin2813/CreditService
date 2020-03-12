@@ -1,29 +1,16 @@
 package com.example.creditservice;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.ListActivity;
-import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.TextView;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +21,7 @@ public class MainUserActivity extends AppCompatActivity  {
     ListView list;
     EditText searchField;
 
-    private List<State> states = new ArrayList();
+    private List<Credit> states = new ArrayList();
 
     private int page=0;
     @Override
@@ -103,14 +90,14 @@ public class MainUserActivity extends AppCompatActivity  {
 
             String s = cursor.getInt(0) + "% "+cursor.getInt(1) + " - " + cursor.getInt(2);
             //процент кредита
-            states.add(new State (cursor.getInt(0) + "% ",
+            states.add(new Credit(cursor.getInt(0) + "% ",
                     cursor.getInt(1) + " - " + cursor.getInt(2),
                     getResources().getIdentifier(cursor.getString(3), "drawable", getPackageName()),
                     cursor.getString(4)));
 
             cursor.moveToNext();
         }
-        StateAdapter stateAdapter = new StateAdapter(this, R.layout.list_item, states);
+        CreditAdapter stateAdapter = new CreditAdapter(this, R.layout.list_item, states);
         // устанавливаем адаптер
         list.setAdapter(stateAdapter);
 

@@ -1,0 +1,42 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="10dp"
+    android:orientation="horizontal"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/labelHeaderListMessage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="Заголовок"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/labelNameUserListMessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="Пользователь" />
+
+        <TextView
+            android:id="@+id/labelNameBankListMessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="Банк" />
+
+        <RadioButton
+            android:id="@+id/radioButtonApprovedListMessage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Одобрено" />
+
+    </LinearLayout>
+</LinearLayout>

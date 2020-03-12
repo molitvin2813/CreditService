@@ -10,13 +10,13 @@ import android.widget.TextView;
 
 import java.util.List;
 
-public class StateAdapter extends ArrayAdapter<State> {
+public class CreditAdapter extends ArrayAdapter<Credit> {
 
     private LayoutInflater inflater;
     private int layout;
-    private List<State> states;
+    private List<Credit> states;
 
-    public StateAdapter(Context context, int resource, List<State> states) {
+    public CreditAdapter(Context context, int resource, List<Credit> states) {
         super(context, resource, states);
         this.states = states;
         this.layout = resource;
@@ -30,7 +30,7 @@ public class StateAdapter extends ArrayAdapter<State> {
         TextView nameView = (TextView) view.findViewById(R.id.labelName);
         TextView capitalView = (TextView) view.findViewById(R.id.labelCapital);
         TextView nameOfBank = (TextView) view.findViewById(R.id.labelNameOfBank);
-        State state = states.get(position);
+        Credit state = states.get(position);
 
         flagView.setImageResource(state.getImageBank());
         nameView.setText(state.getPercent());
