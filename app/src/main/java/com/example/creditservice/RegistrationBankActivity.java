@@ -11,27 +11,26 @@ import android.widget.EditText;
 
 import java.io.IOException;
 
-public class RegistrationUserActivity extends AppCompatActivity {
-
+public class RegistrationBankActivity extends AppCompatActivity {
     private DataBaseHelper mDBHelper;
     private SQLiteDatabase mDb;
-
     private EditText login;
     private EditText password;
+    private EditText aboutBank;
+    private EditText name;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_registration_user);
+        setContentView(R.layout.activity_registration_bank);
 
-        login = (EditText) findViewById(R.id.editTextLoginRegistration);
-        password = (EditText) findViewById(R.id.editTextPasswordRegistration);
-    }// onCreate
+        login = (EditText) findViewById(R.id.editTextLoginBankRegistration);
+        password = (EditText) findViewById(R.id.editTextLoginBankRegistration);
+        aboutBank = (EditText) findViewById(R.id.editTextAboutBankRegistration);
+        name = (EditText) findViewById(R.id.editTextNameBankRegistration);
 
-    /**
-     * Обработчик для кнопки регистрации пользователя в системе
-     * @param view фыва
-     */
-    public void btnRegistrationClick(View view){
+    }
+
+    public void btnBankRegistrationClick(View view){
         mDBHelper = new DataBaseHelper(this);
 
         try {
@@ -46,10 +45,10 @@ public class RegistrationUserActivity extends AppCompatActivity {
             throw mSQLException;
         }
 
-        mDb.execSQL("INSERT INTO t_user (login, password) VALUES ('"+login.getText().toString()+"', '"+password.getText().toString()+"');");
+        mDb.execSQL("INSERT INTO t_bank (login, password, about_bank_text, image, name) " +
+                "VALUES ('"+login.getText().toString()+"', '"+password.getText().toString()+"', " +
+                "'"+aboutBank.getText().toString()+"', 'plant', '"+name.getText().toString()+"'  )");
         mDBHelper.close();
-        Intent intent = new Intent(this, ProfileFillActivity.class);
-        intent.putExtra("login",  login.getText().toString());
-        startActivity(intent);
-    }// btnRegistrationClick
+        finish();
+    }
 }

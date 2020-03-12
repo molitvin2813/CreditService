@@ -18,4 +18,7 @@
     <string name="profileFillActivityEditTextEMail">Почта</string>
     <string name="profileFillActivityEditTextTelephoneNumber">Номер телефона</string>
     <string name="profileFillActivityButtonOK">Подтвердить</string>
+
+    <string name="registrationBankActivityEditTextAboutBank">Краткое описание банка</string>
+    <string name="registrationBankActivityEditTextNameOfBak">Название банка</string>
 </resources>

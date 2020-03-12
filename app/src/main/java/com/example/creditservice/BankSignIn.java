@@ -2,6 +2,7 @@ package com.example.creditservice;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
@@ -55,6 +56,11 @@ public class BankSignIn extends AppCompatActivity {
 
         cursor.close();
         mDBHelper.close();
+    }
+
+    public void bankRegistration(View view){
+        Intent intent = new Intent(this,RegistrationBankActivity.class);
+        startActivity(intent);
     }
 
 }

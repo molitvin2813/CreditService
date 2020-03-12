@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".BankSignIn">
+    tools:context=".RegistrationBankActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -12,55 +12,63 @@
         android:background="@color/backgroundColor"
         android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/imageView3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="100dp"
-            app:srcCompat="@drawable/plant64" />
-
         <EditText
-            android:id="@+id/editTextLoginBank"
+            android:id="@+id/editTextLoginBankRegistration"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
-            android:layout_marginTop="25dp"
+            android:layout_marginTop="50dp"
             android:layout_marginRight="30dp"
             android:ems="10"
-            android:hint="@string/userSignInActivityEditTextLogin"
+            android:hint="@string/registrationUserActivityEditTextLogin"
             android:inputType="textPersonName" />
 
         <EditText
-            android:id="@+id/editTextPasswordBank"
+            android:id="@+id/editTextPasswordBankRegistration"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="30dp"
             android:ems="10"
-            android:hint="@string/userSignInActivityEditTextPassword"
+            android:hint="@string/registrationUserActivityEditTextPassword"
             android:inputType="textPassword" />
 
-        <Button
-            android:id="@+id/btnBankSignIn"
+        <EditText
+            android:id="@+id/editTextAboutBankRegistration"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="150dp"
             android:layout_marginLeft="30dp"
-            android:layout_marginTop="25dp"
+            android:layout_marginTop="10dp"
             android:layout_marginRight="30dp"
-            android:background="@color/backgroundColorBtn"
-            android:onClick="btnBankSignInClick"
-            android:text="@string/userSignInActivityBtn" />
+            android:ems="10"
+            android:gravity="left"
+            android:hint="@string/registrationBankActivityEditTextAboutBank"
+            android:inputType="textPersonName"
+            android:singleLine="false" />
 
-        <TextView
-            android:id="@+id/textViewBankRegister"
+        <EditText
+            android:id="@+id/editTextNameBankRegistration"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="30dp"
-            android:gravity="center"
-            android:onClick="bankRegistration"
-            android:text="@string/userSignInActivityLabel" />
+            android:ems="10"
+            android:hint="@string/registrationBankActivityEditTextNameOfBak"
+            android:inputType="textPersonName" />
+
+        <Button
+            android:id="@+id/buttonBankRegistration"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="30dp"
+            android:background="@color/backgroundColorBtn"
+            android:onClick="btnBankRegistrationClick"
+            android:text="@string/registrationUserActivityButtonOK" />
+
     </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
