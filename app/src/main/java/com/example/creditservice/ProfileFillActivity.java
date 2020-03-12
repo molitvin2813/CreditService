@@ -39,7 +39,7 @@ public class ProfileFillActivity extends AppCompatActivity {
         telephoneNumber = (EditText) findViewById(R.id.editTextTelephoneNumberProfileFillActivity);
 
         Intent intent = getIntent();
-        login = intent.getStringExtra("login");
+        login = "ss";
 
         /**
          * заполняем спинер занчениеями из таблицы t_city
@@ -61,8 +61,9 @@ public class ProfileFillActivity extends AppCompatActivity {
         Cursor cursor = mDb.rawQuery("SELECT * FROM t_city", null);
         cursor.moveToFirst();
 
+        creditList= new String[cursor.getCount()];
         for(int i=0;!cursor.isAfterLast(); i++){
-            creditList[i] = cursor.getInt(0)+"";
+            creditList[i] = String.valueOf(cursor.getInt(0));
             cursor.moveToNext();
         }
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, creditList);

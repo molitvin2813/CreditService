@@ -46,11 +46,10 @@ public class RegistrationUserActivity extends AppCompatActivity {
             throw mSQLException;
         }
 
-        mDb.execSQL("INSERT INTO t_user (login, password) " +
-                "VALUES ('"+login.getText().toString()+"', '"+password.getText().toString()+"')");
-
+        mDb.execSQL("INSERT INTO t_user (login, password) VALUES ('44', '444');");
         mDBHelper.close();
         Intent intent = new Intent(this, ProfileFillActivity.class);
         intent.putExtra("login",  login.getText().toString());
+        startActivity(intent);
     }// btnRegistrationClick
 }

@@ -30,7 +30,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
         copyDataBase();
 
-        this.getReadableDatabase();
+        this.getWritableDatabase();
     }
 
     public void updateDataBase() throws IOException {
@@ -51,15 +51,15 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     }
 
     private void copyDataBase() {
-
-        this.getReadableDatabase();
-        this.close();
-        try {
-            copyDBFile();
-        } catch (IOException mIOException) {
-            throw new Error("ErrorCopyingDataBase");
+        if (!checkDataBase()) {
+            this.getWritableDatabase();
+            this.close();
+            try {
+                copyDBFile();
+            } catch (IOException mIOException) {
+                throw new Error("ErrorCopyingDataBase");
+            }
         }
-
     }
 
     private void copyDBFile() throws IOException {
