@@ -50,9 +50,12 @@ public class BankSignIn extends AppCompatActivity {
         Cursor cursor = mDb.rawQuery("SELECT * FROM t_bank WHERE t_bank.login='"+loginBank.getText().toString() + "' ", null);
         cursor.moveToFirst();
 
+        Intent intent = new Intent(this, MainBankActivity.class);
+
+        intent.putExtra("id",cursor.getInt(0));
         if (!cursor.isAfterLast())
             if(cursor.getString(2).equals(passwordBank.getText().toString()))
-                loginBank.setText("Вход выполнен");
+                startActivity(intent);
 
         cursor.close();
         mDBHelper.close();

@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.RadioButton;
 import android.widget.TextView;
 
 import java.util.List;
@@ -26,9 +27,16 @@ public class MessageAdapter extends ArrayAdapter<Message> {
         View view=inflater.inflate(this.layout, parent, false);
         TextView header = (TextView) view.findViewById(R.id.labelHeaderListMessage);
         TextView nameUser = (TextView) view.findViewById(R.id.labelNameUserListMessage);
-        TextView nameBank = (TextView) view.findViewById(R.id.labelNameUserListMessage);
-        TextView nameOfBank = (TextView) view.findViewById(R.id.labelNameOfBank);
-        Message state = messageList.get(position);
+        TextView nameOfBank = (TextView) view.findViewById(R.id.labelNameBankListMessage);
+        RadioButton radioButtonApproved =  (RadioButton) view.findViewById(R.id.radioButtonApprovedListMessage);
+        Message message = messageList.get(position);
+
+        nameUser.setText("ОТ пользователя: "+message.userName);
+        header.setText("Заголовок: "+message.header);
+
+        nameOfBank.setText("Для представителя банка: "+message.bankName);
+        radioButtonApproved.setChecked(message.approved);
+
         return  view;
     }
 }

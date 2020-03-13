@@ -39,7 +39,7 @@ public class ProfileFillActivity extends AppCompatActivity {
         telephoneNumber = (EditText) findViewById(R.id.editTextTelephoneNumberProfileFillActivity);
 
         Intent intent = getIntent();
-        login = "ss";
+        login = intent.getStringExtra("login");
 
         /**
          * заполняем спинер занчениеями из таблицы t_city

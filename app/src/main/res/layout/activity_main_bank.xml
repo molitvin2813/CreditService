@@ -16,6 +16,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="10dp"
             android:orientation="horizontal">
 
             <Button
@@ -35,6 +36,34 @@
                 android:layout_weight="0.5"
                 android:background="@color/backgroundColorBtn"
                 android:text="Добавить кредит" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/button8"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_weight="0.5"
+                android:background="@color/backgroundColorBtn"
+                android:onClick="prevPage"
+                android:text="Предыдущая страница" />
+
+            <Button
+                android:id="@+id/button7"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="30dp"
+                android:layout_weight="0.5"
+                android:background="@color/backgroundColorBtn"
+                android:onClick="nextPage"
+                android:text="Следующая страница" />
         </LinearLayout>
 
         <ListView

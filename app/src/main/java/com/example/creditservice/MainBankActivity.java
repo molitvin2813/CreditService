@@ -2,10 +2,12 @@ package com.example.creditservice;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ListView;
 
 import java.io.IOException;
@@ -16,16 +18,18 @@ public class MainBankActivity extends AppCompatActivity {
     private DataBaseHelper mDBHelper;
     private SQLiteDatabase mDb;
     private ListView list;
-    private List<Credit> states = new ArrayList();
+    private List<Message> messageList;
 
     private int page=0;
+    private int idBank;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_bank);
 
         list = (ListView) findViewById(R.id.listViewMainBankActivity);
-
+        Intent intent = getIntent();
+        idBank = intent.getIntExtra("id",-1);
         makeRequestToDB();
     }
 
@@ -49,30 +53,49 @@ public class MainBankActivity extends AppCompatActivity {
         }
 
 
-        Cursor cursor = mDb.rawQuery("SELECT t_credit.percent, t_credit.min_amount, t_credit.max_amount, t_bank.image, t_bank.name " +
-                "FROM t_credit " +
-                "INNER JOIN t_bank " +
-                "ON t_credit.t_bank_idt_bank=t_bank.idt_bank ", null);
+        Cursor cursor = mDb.rawQuery(
+                "SELECT t_message.header," +
+                "       t_message.approved," +
+                "       t_bank.name," +
+                "       t_user.login" +
+                "  FROM t_message" +
+                "       INNER JOIN" +
+                "       t_bank ON t_message.t_bank_idt_bank = t_bank.idt_bank" +
+                "       INNER JOIN" +
+                "       t_user ON t_message.t_user_idt_user = t_user.idt_user" +
+                " WHERE t_message.t_bank_idt_bank = "+idBank, null);
 
 
         cursor.moveToPosition(0+page*10);
-        states = new ArrayList();
+        messageList = new ArrayList();
         for(int i=0; i<9 && !cursor.isAfterLast(); i++){
-
-            String s = cursor.getInt(0) + "% "+cursor.getInt(1) + " - " + cursor.getInt(2);
-            //процент кредита
-            states.add(new Credit(cursor.getInt(0) + "% ",
-                    cursor.getInt(1) + " - " + cursor.getInt(2),
-                    getResources().getIdentifier(cursor.getString(3), "drawable", getPackageName()),
-                    cursor.getString(4)));
-
+            messageList.add(new Message(cursor.getString(0),
+                    Boolean.parseBoolean( cursor.getInt(1)+""),
+                    cursor.getString(2),
+                    cursor.getString(3)));
             cursor.moveToNext();
         }
-        CreditAdapter stateAdapter = new CreditAdapter(this, R.layout.list_item, states);
+        MessageAdapter messageAdapter = new MessageAdapter(this, R.layout.list_item_for_message, messageList);
         // устанавливаем адаптер
-        list.setAdapter(stateAdapter);
+        list.setAdapter(messageAdapter);
 
         cursor.close();
         mDBHelper.close();
+    }
+
+    /**
+     * Метод для кнопки предыдущая страница
+     * Показывает предыдущие 10 кредитов из таблицы
+     * @param view ыва
+     */
+    public void prevPage(View view){
+        if(page==0)
+            return;
+        page--;
+        makeRequestToDB();
+    }
+    public void nextPage(View view){
+        page++;
+        makeRequestToDB();
     }
 }
