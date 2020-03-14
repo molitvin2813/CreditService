@@ -8,8 +8,10 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -20,9 +22,8 @@ public class MainUserActivity extends AppCompatActivity  {
     private SQLiteDatabase mDb;
     ListView list;
     EditText searchField;
-
+    private TextView nameBank;
     private List<Credit> states = new ArrayList();
-
     private int page=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +32,19 @@ public class MainUserActivity extends AppCompatActivity  {
 
         list = (ListView) findViewById(R.id.listViewMainUserActivity);
         searchField = (EditText) findViewById(R.id.editTextSearch) ;
+
+        mDBHelper = new DataBaseHelper(this);
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                nameBank = view.findViewById(R.id.textViewID);
+                Intent intent = new Intent(MainUserActivity.this, CreditPageActivity.class);
+                intent.putExtra("idCredit",Integer.parseInt(nameBank.getText().toString()));
+                startActivity(intent);
+            }
+        });
+
 
         makeRequestToDB();
     }// onCreate
@@ -78,7 +92,7 @@ public class MainUserActivity extends AppCompatActivity  {
         }
 
 
-        Cursor cursor = mDb.rawQuery("SELECT t_credit.percent, t_credit.min_amount, t_credit.max_amount, t_bank.image, t_bank.name " +
+        Cursor cursor = mDb.rawQuery("SELECT t_credit.percent, t_credit.min_amount, t_credit.max_amount, t_bank.image, t_bank.name, t_credit.idt_credit " +
                 "FROM t_credit " +
                 "INNER JOIN t_bank " +
                 "ON t_credit.t_bank_idt_bank=t_bank.idt_bank ", null);
@@ -93,7 +107,7 @@ public class MainUserActivity extends AppCompatActivity  {
             states.add(new Credit(cursor.getInt(0) + "% ",
                     cursor.getInt(1) + " - " + cursor.getInt(2),
                     getResources().getIdentifier(cursor.getString(3), "drawable", getPackageName()),
-                    cursor.getString(4)));
+                    cursor.getString(4), cursor.getInt(5)));
 
             cursor.moveToNext();
         }
@@ -114,5 +128,6 @@ public class MainUserActivity extends AppCompatActivity  {
         page++;
         makeRequestToDB();
     }
+
 
 }

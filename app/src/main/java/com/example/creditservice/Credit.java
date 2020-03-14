@@ -6,13 +6,14 @@ public class Credit {
     private String minMaxAmount;  // столица
     private int imageBank; // ресурс флага
     private String nameOfBank;
-
-    public Credit(String name, String capital, int flag, String nameOfBank){
+    public int ID;
+    public Credit(String name, String capital, int flag, String nameOfBank, int ID){
 
         this.percent =name;
         this.minMaxAmount =capital;
         this.imageBank =flag;
         this.nameOfBank = nameOfBank;
+        this.ID = ID;
     }
 
     public String getPercent() {

@@ -30,12 +30,14 @@ public class CreditAdapter extends ArrayAdapter<Credit> {
         TextView nameView = (TextView) view.findViewById(R.id.labelName);
         TextView capitalView = (TextView) view.findViewById(R.id.labelCapital);
         TextView nameOfBank = (TextView) view.findViewById(R.id.labelNameOfBank);
+        TextView id = (TextView) view.findViewById(R.id.textViewID);
         Credit state = states.get(position);
 
         flagView.setImageResource(state.getImageBank());
         nameView.setText(state.getPercent());
         capitalView.setText(state.getMinMaxAmount());
         nameOfBank.setText(state.getNameOfBank());
+        id.setText(state.ID + "");
         return view;
     }
 }

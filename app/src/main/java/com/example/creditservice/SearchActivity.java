@@ -53,7 +53,7 @@ public class SearchActivity extends AppCompatActivity {
         }
 
         states = new ArrayList();
-        Cursor cursor = mDb.rawQuery("SELECT t_credit.percent, t_credit.min_amount, t_credit.max_amount, t_bank.image, t_bank.name " +
+        Cursor cursor = mDb.rawQuery("SELECT t_credit.percent, t_credit.min_amount, t_credit.max_amount, t_bank.image, t_bank.name t_credit.idt_credit" +
                 "FROM t_credit " +
                 "INNER JOIN t_bank " +
                 "ON t_credit.t_bank_idt_bank=t_bank.idt_bank " +
@@ -67,7 +67,7 @@ public class SearchActivity extends AppCompatActivity {
             states.add(new Credit(cursor.getInt(0) + "% ",
                     cursor.getInt(1) + " - " + cursor.getInt(2),
                     getResources().getIdentifier(cursor.getString(3), "drawable", getPackageName()),
-                    cursor.getString(4)));
+                    cursor.getString(4), cursor.getInt(5)));
             cursor.moveToNext();
         }
         CreditAdapter adapter = new CreditAdapter(this, R.layout.list_item, states);
