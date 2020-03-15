@@ -22,9 +22,12 @@ public class MainUserActivity extends AppCompatActivity  {
     private SQLiteDatabase mDb;
     ListView list;
     EditText searchField;
-    private TextView nameBank;
+    private TextView idCredit;
     private List<Credit> states = new ArrayList();
     private int page=0;
+
+    public static int idUser;
+    public static int idBank;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,9 +41,32 @@ public class MainUserActivity extends AppCompatActivity  {
 
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                nameBank = view.findViewById(R.id.textViewID);
+                idCredit = view.findViewById(R.id.textViewID);
                 Intent intent = new Intent(MainUserActivity.this, CreditPageActivity.class);
-                intent.putExtra("idCredit",Integer.parseInt(nameBank.getText().toString()));
+                intent.putExtra("idCredit",Integer.parseInt(idCredit.getText().toString()));
+
+                mDBHelper = new DataBaseHelper(MainUserActivity.this);
+
+                try {
+                    mDBHelper.updateDataBase();
+                } catch (IOException mIOException) {
+                    throw new Error("UnableToUpdateDatabase");
+                }
+
+                try {
+                    mDb = mDBHelper.getWritableDatabase();
+                } catch (SQLException mSQLException) {
+                    throw mSQLException;
+                }
+                Cursor cursor=mDb.rawQuery("SELECT t_credit.t_bank_idt_bank " +
+                        "FROM t_credit " +
+                        "WHERE t_credit.idt_credit="+ idCredit.getText().toString(), null);
+                cursor.moveToFirst();
+                if(!cursor.isAfterLast())
+                    idBank = cursor.getInt(0);
+
+                cursor.close();
+                mDBHelper.close();
                 startActivity(intent);
             }
         });

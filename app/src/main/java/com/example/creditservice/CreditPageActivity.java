@@ -24,7 +24,7 @@ public class CreditPageActivity extends AppCompatActivity {
 
     private ImageView bankImage;
 
-    private int idCredit;
+    public static int idCredit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,5 +79,10 @@ public class CreditPageActivity extends AppCompatActivity {
 
     public void showBranch(View view){
 
+    }
+
+    public void openSendMessageActivity(View view){
+        Intent intent = new Intent(this, SendMessageActivity.class);
+        startActivity(intent);
     }
 }

@@ -51,10 +51,14 @@ public class UserSignIn extends AppCompatActivity {
         Cursor cursor = mDb.rawQuery("SELECT * FROM t_user WHERE t_user.login = '"+loginUser.getText().toString() + "' ", null);
         cursor.moveToFirst();
 
+
         Intent intent = new Intent(this, MainUserActivity.class);
         if (!cursor.isAfterLast())
-            if(cursor.getString(2).equals(passwordUser.getText().toString()))
+            if(cursor.getString(2).equals(passwordUser.getText().toString())){
+                MainUserActivity.idUser=cursor.getInt(0);
                 startActivity(intent);
+            }
+
 
 
 

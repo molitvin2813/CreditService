@@ -8,7 +8,9 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -17,20 +19,32 @@ import java.util.List;
 public class MainBankActivity extends AppCompatActivity {
     private DataBaseHelper mDBHelper;
     private SQLiteDatabase mDb;
-    private ListView list;
+    private ListView listView;
     private List<Message> messageList;
 
     private int page=0;
-    private int idBank;
+    public static int idBank;
+    public static int idMessage;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_bank);
 
-        list = (ListView) findViewById(R.id.listViewMainBankActivity);
+        listView = (ListView) findViewById(R.id.listViewMainBankActivity);
         Intent intent = getIntent();
         idBank = intent.getIntExtra("id",-1);
         makeRequestToDB();
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                TextView idMes= view.findViewById(R.id.textViewIDMessage);
+                Intent intent = new Intent(MainBankActivity.this, MessageActivity.class);
+                idMessage= Integer.parseInt(idMes.getText().toString());
+
+                startActivity(intent);
+            }
+        });
     }
 
     /**
@@ -57,7 +71,8 @@ public class MainBankActivity extends AppCompatActivity {
                 "SELECT t_message.header," +
                 "       t_message.approved," +
                 "       t_bank.name," +
-                "       t_user.login" +
+                "       t_user.login," +
+                        "       t_message.idt_message" +
                 "  FROM t_message" +
                 "       INNER JOIN" +
                 "       t_bank ON t_message.t_bank_idt_bank = t_bank.idt_bank" +
@@ -72,12 +87,13 @@ public class MainBankActivity extends AppCompatActivity {
             messageList.add(new Message(cursor.getString(0),
                     Boolean.parseBoolean( cursor.getInt(1)+""),
                     cursor.getString(2),
-                    cursor.getString(3)));
+                    cursor.getString(3),
+                    cursor.getInt(4)));
             cursor.moveToNext();
         }
         MessageAdapter messageAdapter = new MessageAdapter(this, R.layout.list_item_for_message, messageList);
         // устанавливаем адаптер
-        list.setAdapter(messageAdapter);
+        listView.setAdapter(messageAdapter);
 
         cursor.close();
         mDBHelper.close();

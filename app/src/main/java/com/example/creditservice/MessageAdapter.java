@@ -28,14 +28,15 @@ public class MessageAdapter extends ArrayAdapter<Message> {
         TextView header = (TextView) view.findViewById(R.id.labelHeaderListMessage);
         TextView nameUser = (TextView) view.findViewById(R.id.labelNameUserListMessage);
         TextView nameOfBank = (TextView) view.findViewById(R.id.labelNameBankListMessage);
-        RadioButton radioButtonApproved =  (RadioButton) view.findViewById(R.id.radioButtonApprovedListMessage);
+        TextView idMessage = (TextView) view.findViewById(R.id.textViewIDMessage);
+        TextView approved =  (TextView) view.findViewById(R.id.textViewApprovedListMessage);
         Message message = messageList.get(position);
 
         nameUser.setText("ОТ пользователя: "+message.userName);
         header.setText("Заголовок: "+message.header);
-
+        idMessage.setText(""+message.idMessage);
         nameOfBank.setText("Для представителя банка: "+message.bankName);
-        radioButtonApproved.setChecked(message.approved);
+        approved.setText((message.approved==true)?"Одобрено":"Увы, но нет(");
 
         return  view;
     }

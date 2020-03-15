@@ -32,12 +32,17 @@
             android:layout_marginLeft="10dp"
             android:text="Банк" />
 
-        <RadioButton
-            android:id="@+id/radioButtonApprovedListMessage"
+        <TextView
+            android:id="@+id/textViewIDMessage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:editable="false"
-            android:text="Одобрено" />
+            android:text="id" />
+
+        <TextView
+            android:id="@+id/textViewApprovedListMessage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView" />
 
     </LinearLayout>
 </LinearLayout>
